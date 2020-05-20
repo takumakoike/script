@@ -1,0 +1,45 @@
+function main() {
+  //チャットワークトークン・ID
+  const CW_TOKEN = '*******************';
+  const CW_ROOM = '*******************';
+  const CW_TO = '*******************';
+
+  //Gmailから特定条件のスレッドを検索しメールを取り出す
+  var strTerms = 'subject:注文確認： chikyu-shop';
+  var myThreads = GmailApp.search(strTerms, 0, 50); //条件にマッチしたスレッドを取得
+  var myMsgs = GmailApp.getMessagesForThreads(myThreads); //スレッドからメールを取得する→二次元配列で格納
+
+  //チャットワークAPI
+  var client = ChatWorkClient.factory({
+    token: CW_TOKEN
+  });
+
+  //各スレッド×メール
+  for (var i = myMsgs.length - 1; i >= 0; i--) {
+    var msgsInThread = myMsgs[i];
+    for (var j = 0; j < msgsInThread.length; j++) {
+      var msg = msgsInThread[j];
+
+      //未読のみ
+      if (msg.isUnread()) {
+        //メールを既読にする
+        msg.markRead();
+
+        //メッセージ作成
+        var msgBody = "[To:" + CW_TO + "]" +
+                      "●●さん[info]" +
+                          "[title]" + msg.getSubject() + "[/title]" +
+                          msg.getFrom() + "[hr]" +
+                          msg.getPlainBody() + "[hr]" +
+                          msg.getDate() +
+                      "[/info]";
+
+        //チャットワークに送る
+        client.sendMessage({
+          room_id: CW_ROOM,
+          body: msgBody
+        });
+      }
+    }
+  }
+}
