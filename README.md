@@ -5,3 +5,10 @@ from Gmail to Chatwork
 
 Reference
 https://tonari-it.com/
+
+
+from spreadsheet to twitter
+
+こちらのスクリプトは『もりさんのプログラミング手帳』を参考にして作成しています。
+Reference
+https://moripro.net/
