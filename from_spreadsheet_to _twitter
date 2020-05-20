@@ -1,0 +1,52 @@
+//認証用インスタンスの生成
+var twitter = TwitterWebService.getInstance(
+  '*******************',//API Key
+  '*******************'//API secret key
+);
+ 
+//アプリを連携認証する
+function authorize() {
+  twitter.authorize();
+}
+ 
+//認証を解除する
+function reset() {
+  twitter.reset();
+}
+ 
+//認証後のコールバック
+function authCallback(request) {
+  return twitter.authCallback(request);
+}
+
+
+// ツイートを投稿
+function postTweet() {
+  
+  var service  = twitter.getService();
+  var endPointUrl = 'https://api.twitter.com/1.1/statuses/update.json';
+  
+  //Twitterに投稿するメッセージを作成する
+    
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Twitter');
+    var lastRow = sheet.getLastRow();
+    
+    //2行目～最終行の間で、ランダムな行番号を算出する
+    var row = Math.ceil(Math.random() * (lastRow-1)) + 1;
+    
+    //ランダムに算出した行番号のタイトルとURLを取得
+    var msgBody = sheet.getRange(row, 1).getValue();
+    var itemUrl = sheet.getRange(row, 2).getValue();
+    
+    var postMessage = msgBody + '\n\n' + itemUrl;
+  
+//  メッセージを送信する
+  var response = service.fetch(endPointUrl, {
+    method: 'post',
+    payload: {
+      status: postMessage
+    }
+  });  
+}
+
+
