@@ -5,7 +5,7 @@ function main() {
   const CW_TO = '*******************';
 
   //Gmailから特定条件のスレッドを検索しメールを取り出す
-  var strTerms = 'subject:注文確認： chikyu-shop';
+  var strTerms = 'subject:注文確認：';
   var myThreads = GmailApp.search(strTerms, 0, 50); //条件にマッチしたスレッドを取得
   var myMsgs = GmailApp.getMessagesForThreads(myThreads); //スレッドからメールを取得する→二次元配列で格納
 
