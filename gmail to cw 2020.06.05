@@ -1,0 +1,206 @@
+//sold****ごとに関数を作成し、トリガーを一つずつ設定する
+
+function sold****() {
+  //チャットワークトークン・ID
+  const CW_TOKEN = '*******************';
+  const CW_ROOM = '*********';
+  const CW_TO = '**********';
+
+  //Gmailから特定条件のスレッドを検索しメールを取り出す
+  var strTerms = '"subject:**************"'; //件名で検索
+  var myThreads = GmailApp.search(strTerms, 0, 25); //条件にマッチしたスレッドを取得・・・（検索条件、開始スレッドインデックス、最大取得数）
+  var myMsgs = GmailApp.getMessagesForThreads(myThreads); //スレッドからメールを取得する→二次元配列で格納
+  
+  //チャットワークについてのライブラリについては『M6TcEyniCs1xb3sdXFF_FhI-MNonZQ_sT』を使用。
+  var client = ChatWorkClient.factory({token: CW_TOKEN});//特定のトークン使ってライブラリを操作する準備
+
+  //各スレッド×メール
+  for (var i = myMsgs.length - 1; i >= 0; i--) {
+    var msgsInThread = myMsgs[i]; //object type
+    for (var j = 0; j < msgsInThread.length; j++) {
+      var msg = msgsInThread[j];
+
+      if (msg.isUnread()) { //未読のメッセージがあれば
+        msg.markRead(); //メールを既読にした上で以下の文面を転送する
+
+        //チャットワークに送信するメッセージ本文の部分
+        var msgBody = "[To:" + CW_TO + "]" + "****さん\n\n" + 
+          "商品が購入されました。\nショップアカウントおよび商品情報をご確認ください。\n\nメッセージが見切れている場合はお手数ですが運営担当者までご連絡ください。\n" +
+          "[info][title]" + msg.getSubject() + "[/title]" + msg.getPlainBody() + "[/info]";
+
+        //チャットワークに送る
+        client.sendMessage({
+          room_id: CW_ROOM,
+          body: msgBody
+        });
+      }
+    }
+  }
+}
+
+function sold****() {
+  //チャットワークトークン・ID
+  const CW_TOKEN = '********************';
+  const CW_ROOM = '*********';
+  const CW_TO = '*********';
+
+  //Gmailから特定条件のスレッドを検索しメールを取り出す
+  var strTerms = '"subject:******************"';
+  var myThreads = GmailApp.search(strTerms, 0, 25); //条件にマッチしたスレッドを取得・・・（検索条件、開始スレッドインデックス、最大取得数）
+  var myMsgs = GmailApp.getMessagesForThreads(myThreads); //スレッドからメールを取得する→二次元配列で格納
+  
+  //チャットワークについてのライブラリについては『M6TcEyniCs1xb3sdXFF_FhI-MNonZQ_sT』を使用。
+  var client = ChatWorkClient.factory({token: CW_TOKEN});//特定のトークン使ってライブラリを操作する準備
+
+  //各スレッド×メール
+  for (var i = myMsgs.length - 1; i >= 0; i--) {
+    var msgsInThread = myMsgs[i]; //object type
+    for (var j = 0; j < msgsInThread.length; j++) {
+      var msg = msgsInThread[j];
+
+      if (msg.isUnread()) { //未読のメッセージがあれば
+        msg.markRead(); //メールを既読にした上で以下の文面を転送する
+
+        //チャットワークに送信するメッセージ本文の部分
+        var msgBody = "[To:" + CW_TO + "]" + "****さん\n\n" + 
+          "商品が購入されました。\nショップアカウントおよび商品情報をご確認ください。\n\nメッセージが見切れている場合はお手数ですが運営担当者までご連絡ください。\n" +
+          "[info][title]" + msg.getSubject() + "[/title]" + msg.getPlainBody() + "[/info]";
+
+        //チャットワークに送る
+        client.sendMessage({
+          room_id: CW_ROOM,
+          body: msgBody
+        });
+      }
+    }
+  }
+}
+
+function sold****() {
+  //チャットワークトークン・ID
+  const CW_TOKEN = '*****************';
+  const CW_ROOM = '*************';
+  const CW_TO = '***********';
+
+  //Gmailから特定条件のスレッドを検索しメールを取り出す
+  var strTerms = 'subject:"*****************"';
+  var myThreads = GmailApp.search(strTerms, 0, 25); //条件にマッチしたスレッドを取得・・・（検索条件、開始スレッドインデックス、最大取得数）
+  var myMsgs = GmailApp.getMessagesForThreads(myThreads); //スレッドからメールを取得する→二次元配列で格納
+  
+  //チャットワークについてのライブラリについては『M6TcEyniCs1xb3sdXFF_FhI-MNonZQ_sT』を使用。
+  var client = ChatWorkClient.factory({token: CW_TOKEN});//特定のトークン使ってライブラリを操作する準備
+
+  //各スレッド×メール
+  for (var i = myMsgs.length - 1; i >= 0; i--) {
+    var msgsInThread = myMsgs[i]; //object type
+    for (var j = 0; j < msgsInThread.length; j++) {
+      var msg = msgsInThread[j];
+
+      if (msg.isUnread()) { //未読のメッセージがあれば
+        msg.markRead(); //メールを既読にした上で以下の文面を転送する
+
+        //チャットワークに送信するメッセージ本文の部分
+        var msgBody = "[To:" + CW_TO + "]" + "****さん\n\n" + 
+          "商品が購入されました。\nショップアカウントおよび商品情報をご確認ください。\n\nメッセージが見切れている場合はお手数ですが運営担当者までご連絡ください。\n" +
+          "[info][title]" + msg.getSubject() + "[/title]" + msg.getPlainBody() + "[/info]";
+
+        //チャットワークに送る
+        client.sendMessage({
+          room_id: CW_ROOM,
+          body: msgBody
+        });
+      }
+    }
+  }
+}
+
+function sold****() {
+  //チャットワークトークン・ID
+  const CW_TOKEN = '*************';
+  const CW_ROOM = '***********';
+  const CW_TO = '************';
+
+  //Gmailから特定条件のスレッドを検索しメールを取り出す
+  var strTerms = '"subject:**************"';
+  var myThreads = GmailApp.search(strTerms, 0, 25); //条件にマッチしたスレッドを取得・・・（検索条件、開始スレッドインデックス、最大取得数）
+  var myMsgs = GmailApp.getMessagesForThreads(myThreads); //スレッドからメールを取得する→二次元配列で格納
+  
+  //チャットワークについてのライブラリについては『M6TcEyniCs1xb3sdXFF_FhI-MNonZQ_sT』を使用。
+  var client = ChatWorkClient.factory({token: CW_TOKEN});//特定のトークン使ってライブラリを操作する準備
+
+  //各スレッド×メール
+  for (var i = myMsgs.length - 1; i >= 0; i--) {
+    var msgsInThread = myMsgs[i]; //object type
+    for (var j = 0; j < msgsInThread.length; j++) {
+      var msg = msgsInThread[j];
+
+      if (msg.isUnread()) { //未読のメッセージがあれば
+        msg.markRead(); //メールを既読にした上で以下の文面を転送する
+
+        //チャットワークに送信するメッセージ本文の部分
+        var msgBody = "[To:" + CW_TO + "]" + "********さん\n\n" + 
+          "商品が購入されました。\nショップアカウントおよび商品情報をご確認ください。\n\nメッセージが見切れている場合はお手数ですが運営担当者までご連絡ください。\n" +
+          "[info][title]" + msg.getSubject() + "[/title]" + msg.getPlainBody() + "[/info]";
+
+        //チャットワークに送る
+        client.sendMessage({
+          room_id: CW_ROOM,
+          body: msgBody
+        });
+      }
+    }
+  }
+}
+
+function replyRequired() {
+  //チャットワークトークン・ID
+  const CW_TOKEN = '***********';
+  const header = {"X-ChatWorkToken": CW_TOKEN};
+  const CW_ROOM = '*************';
+  const CW_TO = '**********';
+  const url = "https://api.chatwork.com/v2/rooms/" + CW_ROOM + "/messages";
+
+  //Gmailから特定条件のスレッドを検索しメールを取り出す
+  var strTerms = 'Subject:"【要ご返信】 OR 【重要】"';
+  var myThreads = GmailApp.search(strTerms, 0, 10); //条件にマッチしたスレッドを取得・・・（検索条件、開始スレッドインデックス、最大取得数）
+  var myMsgs = GmailApp.getMessagesForThreads(myThreads); //スレッドからメールを取得する→二次元配列で格納
+  
+  
+  //参考URL：https://github.com/cw-shibuya/chatwork-client-gas
+  //チャットワークについてのライブラリについては『M6TcEyniCs1xb3sdXFF_FhI-MNonZQ_sT』を使用。
+  //var client = ChatWorkClient.factory({token: CW_TOKEN});//特定のトークン使ってライブラリを操作する準備
+
+  //各スレッド×メール
+  for (var i = myMsgs.length - 1; i >= 0; i--) {
+    var msgsInThread = myMsgs[i]; //object type
+    for (var j = 0; j < msgsInThread.length; j++) {
+      var msg = msgsInThread[j];
+
+      if (msg.isUnread()) { //未読のメッセージがあれば
+        msg.markRead(); //メールを既読にした上で以下の文面を転送する
+
+      
+        //チャットワークに送信するメッセージ本文の部分
+        var msgBody = "[toall]\n" +  
+          "以下対応が必要なメッセージがきています。ご確認のほどよろしくお願いいたします。\n\n" +
+          "本メールの送信日：" + msg.getDate().getFullYear() + "年" + (msg.getDate().getMonth()+1) + "月" + msg.getDate().getDate() + "日" + "[hr]" +
+          "[info]" + "[title]" + msg.getSubject() + "[/title]" + msg.getPlainBody() + "[/info]";
+
+        
+         //メッセージ送信するための基礎情報。ここで未読のままに設定する
+         var param = {
+            headers: header,
+            method: "post",
+            payload: {
+              body: msgBody,
+              self_unread: "1"
+              }
+          };
+  
+  UrlFetchApp.fetch(url,param);
+      }
+    }
+  }
+}
+
+
